@@ -1,3 +1,5 @@
+use std::convert::TryInto;
+
 fn main() {
     different_representation_of_types();
 
@@ -23,7 +25,7 @@ fn different_representation_of_types() {
 fn print_float() {
     let one_milion: i64 = 1_000_000;
     println!("{}", one_milion.pow(2));
-    
+
     let forty_twos: [f64; 3] = [42.0, 42.0f64, 42.0_f64];
     println!("{:2}", forty_twos[0]);
 }
@@ -40,10 +42,20 @@ fn print_different_base_numbers() {
 }
 
 fn compare_numbers() {
-    let g: i32 = 2;
-    let h: u16 = 3;
+    let a: i32 = 2;
+    let b: u16 = 3;
 
-    if h > (g as u16) {
-        print!("great!");
+    if a < (b as i32) {
+        print!("less");
+    }
+
+    let c: i32 = 2;
+    let d: u16 = 3;
+
+    let d_: i32 = d.try_into()
+              .unwrap();
+
+    if c < d_  {
+        println!("less");
     }
 }
