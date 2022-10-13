@@ -2,10 +2,9 @@ use std::time::{Duration, Instant};
 
 fn main() {
     simple_for_loop_with_some_ownership_and_lambda();
-
     while_mutable_loop();
-
     loop_through_times();
+    loop_labels();
 }
 
 fn loop_through_times() {
@@ -36,4 +35,17 @@ fn simple_for_loop_with_some_ownership_and_lambda() {
     container.into_iter().for_each(|item: i32| {
         println!("{}", item);
     });
+}
+
+fn loop_labels() {
+    'outer: for x in 0.. {
+        for y in 0.. {
+            for z in 0.. {
+                if x + y + z > 1000 {
+                    println!("break!");
+                    break 'outer;
+                }
+            }
+        }
+    }
 }
